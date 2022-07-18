@@ -1,0 +1,80 @@
+
+.user{
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1px #fff solid;
+    border-radius: 7px;
+    padding: .4em .6em;
+    margin: 1em 10em 1em 1em;
+    background-color: rgba(41,41,41,.04);
+;
+}
+/********************** photo+button *******************************************/
+.userPhoto {
+    flex: 1;
+}
+.userPhoto img {
+    display: flex;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 7em;
+    height: 7em;
+}
+
+/********************** userInfo *******************************************/
+.userInfo {
+    flex: 2;
+}
+.userFullName {
+    font-size: 1.2em;
+    color: rgb(41,41,41);
+    margin: .5em 0 .5em 0;
+}
+.userStatus, .userLocation{
+    font-size: 1em;
+    color: rgb(41,41,41);
+    font-weight: normal;
+    margin: .5em 0;
+}
+.userLocation {
+    font-size: .9em;
+    color: #696969;
+    font-weight: bold;
+}
+
+/********************** userLocation *******************/
+.userFollow {
+    flex: 1;
+}
+
+.userFollow button {
+    margin-right: auto;
+    margin-top: 2em;
+}
+
+/********************** selectedPage *******************/
+
+.selectedPage {
+    font-weight: bold;
+    color: #78be21;
+}
+
+.unselectedPage {
+    font-weight: normal;
+    color: #696969;
+}
+
+.unselectedPage:hover {
+    color: #78be21;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+

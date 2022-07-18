@@ -1,0 +1,49 @@
+.login {
+    text-align: center;
+}
+
+.loginPage{
+    max-width: 500px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+form div {
+    display: flex;
+    flex-flow: row nowrap;
+    line-height: 2em;
+    margin: 5px;
+}
+
+form div label {
+    color: #333;
+    width: 110px;
+    font-size: 1em;
+    line-height: 32px;
+}
+.rememberMe{
+    font-size: .8em;
+}
+input {
+    flex: 1;
+    font-size: 1em;
+    padding: 3px 5px;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.checkBoxDiv {
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+input[type='checkbox'] {
+    flex: none;
+}
+
+.buttonLogin {
+    margin: 0 auto;
+}

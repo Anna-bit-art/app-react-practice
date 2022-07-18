@@ -1,0 +1,11 @@
+
+.nav {
+    grid-area: nav;
+    background-color: rgba(41, 41, 41,.7);
+    padding: 1em;
+}
+.nav div{
+    padding: .2em;
+}
+
+

@@ -1,0 +1,19 @@
+.posts {
+    display: flex;
+}
+
+.item {
+    font-size: 1em;
+    color: #000;
+    font-weight: normal;
+    flex: 5;
+    margin-left: .5em;
+}
+
+.imgPost {
+    vertical-align: middle;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+
+}

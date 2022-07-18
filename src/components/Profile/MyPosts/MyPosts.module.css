@@ -1,0 +1,28 @@
+h1 {
+    display: inline-block;
+    font-size: 1em;
+    margin: 1em 0 .5em 0;
+    color: rgb(179,22,111);
+    text-transform: uppercase;
+}
+
+h5 {
+    margin: .5em 0 0;
+    color: #696969;
+}
+
+.split{
+    display: flex;
+    flex: 70%;
+}
+
+.field{
+    flex: 80%;
+}
+
+.noDiv{
+    flex: 1;
+}
+.posts {
+    margin-left: 20px;
+}

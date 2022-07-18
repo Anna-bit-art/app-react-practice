@@ -1,0 +1,16 @@
+
+.profileStatus{
+    font-size: 1em;
+    color: #000;
+    font-weight: normal;
+    margin-top: .3em;
+    border: 1px solid #ffffff;
+}
+
+.profileStatusInput {
+    font-size: 1em;
+    color: #000;
+    font-weight: normal;
+    margin-top: .3em;
+    border: 1px solid #ffffff;
+}
