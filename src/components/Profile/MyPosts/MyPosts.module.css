@@ -1,9 +1,9 @@
 h1 {
     display: inline-block;
     font-size: 1em;
-    margin: 1em 0 .5em 0;
-    color: rgb(179,22,111);
+    color: rgb(179, 22, 111);
     text-transform: uppercase;
+    margin: 0 0 0 0.5em;
 }
 
 h5 {
@@ -11,18 +11,20 @@ h5 {
     color: #696969;
 }
 
-.split{
-    display: flex;
-    flex: 70%;
-}
-
-.field{
+.field {
     flex: 80%;
 }
 
-.noDiv{
-    flex: 1;
+.field form {
+    width: 75%;
+    padding: 0.5em;
 }
+
+.field textarea {
+    width: 100%;
+    margin: 0 0 0.5em;
+}
+
 .posts {
     margin-left: 20px;
 }

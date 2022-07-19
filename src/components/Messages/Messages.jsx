@@ -2,8 +2,9 @@ import s from './Messages.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {Navigate} from "react-router-dom";
 import {Field, Form} from "react-final-form";
+import {Textarea} from "../common/formsControl/formsControls";
+import {maxValue} from "../../utils/validators";
 
 const Messages = (props) => {
 
@@ -21,7 +22,7 @@ const Messages = (props) => {
 
             <div className={s.messages}>
                 <div>{messagesElements}</div>
-                    <MessageForm updateNewMessage={props.updateNewMessage} addMessage={props.addMessage}/>
+                <MessageForm addMessage={props.addMessage}/>
             </div>
         </div>
     )
@@ -31,14 +32,14 @@ const Messages = (props) => {
 const MessageForm = (props) => {
     const onSubmit = (formData) => {
         console.log(formData)
-        props.updateNewMessage(formData.message);
-        props.addMessage();
+        props.addMessage(formData.message);
     }
     return (
         <Form onSubmit={onSubmit}>
             {({handleSubmit}) => (
                 <form onSubmit={handleSubmit}>
-                    <Field name={'message'} component={'textarea'} type={'text'} placeholder={'Send a message...'} />
+                    <Field name={'message'} component={Textarea} type={'text'} placeholder={'Send a message...'}
+                           validate={maxValue(10)}/>
                     <button>Send</button>
                 </form>
             )}
@@ -47,15 +48,9 @@ const MessageForm = (props) => {
 
 }
 
-let a = 2.5
-
-
-
 
 export default Messages;
 
 
 
 
-{/*<textarea onChange={onMessageChange} placeholder='Send a message...' value={props.newMessageText}/>*/}
-{/*<button onClick={onSendMessage}><a href='#'>Send</a></button>*/}

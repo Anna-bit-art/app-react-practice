@@ -9,7 +9,7 @@
     padding: 20px;
 }
 
-form div {
+form.loginPage div {
     display: flex;
     flex-flow: row nowrap;
     line-height: 2em;

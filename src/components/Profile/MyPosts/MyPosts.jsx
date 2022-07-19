@@ -2,22 +2,19 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
 import { Form, Field } from 'react-final-form';
+import {maxValue} from "../../../utils/validators";
+import {Textarea} from "../../common/formsControl/formsControls";
 
 
 const  MyPosts = (props) => {
 
     return (
-        <div>
+        <>
             <h1> My posts </h1>
-            <div className={s.split}>
-                <div className={s.field}>
-
-                    <MyPostForm onAddPost={props.addPost} onPostChange={props.updateNewPost} newPostText={props.newPostText}/>
-
-                </div>
-
-                <div className={s.noDiv}></div>
+            <div className={s.field}>
+                <MyPostForm addPost={props.addPost}/>
             </div>
+
 
             <div className={s.posts}>
                 <div>
@@ -26,24 +23,23 @@ const  MyPosts = (props) => {
                     ))}
                 </div>
             </div>
-        </div>
+        </>
     )
 };
-
 
 
 
 const MyPostForm = (props) => {
    const onSubmit = (formData) => {
        console.log(formData)
-       props.onPostChange(formData.myPost);
-       props.onAddPost();
+       props.addPost(formData.myPost);
    }
     return (
         <Form onSubmit={onSubmit}>
             {({handleSubmit}) => (
                 <form onSubmit={handleSubmit}>
-                    <Field name={'myPost'} component={'textarea'} type={'text'} placeholder={'Make your the new post...'} />
+                    <Field name={'myPost'} component={Textarea} type={'text'} placeholder={'Make your the new post...'}
+                           validate={maxValue(250)}/>
                     <button>Send</button>
                 </form>
             )}
@@ -52,11 +48,10 @@ const MyPostForm = (props) => {
 
 }
 
-
+export default MyPosts;
 
 
 // <textarea onChange={onPostChange} placeholder='Make your the new post...'
 //           value={props.newPostText}/>
 // <button onClick={onAddPost}><a href='#'>Send</a></button>
 
-export default MyPosts;

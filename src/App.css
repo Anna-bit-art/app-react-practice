@@ -64,7 +64,7 @@ textarea {
     background-color: rgba(41, 41, 41,.04);
     border: 1px solid rgba(41, 41, 41,.04);
     box-sizing: border-box;
-    width: 100%;
+    display: flex;
 }
 input:focus-visible{
     border: none;

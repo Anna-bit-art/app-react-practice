@@ -3,7 +3,8 @@ import s from "./Login.module.css";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {login} from "../../redux/authReducer";
-import {FORM_ERROR} from "final-form";
+import {required, maxValue, composeValidators} from "../../utils/validators";
+import {Input} from "../common/formsControl/formsControls";
 
 
 const LoginForm = (props) => {
@@ -20,19 +21,21 @@ const LoginForm = (props) => {
                 onSubmit={onSubmit}
 
             >
-                {({handleSubmit, pristine, reset, submitting}) => (
+                {({handleSubmit}) => (
                     <div>
                         <form onSubmit={handleSubmit} className={s.loginPage}>
                             <div>
                                 <label>Email</label>
-                                <Field name='email' component='input' placeholder='email' type='email'/>
+                                <Field name='email' component={Input} placeholder='email' type='email'
+                                        validate={composeValidators(required,maxValue(10))}/>
                             </div>
                             <div>
                                 <label>Password</label>
-                                <Field name='password' component='input' placeholder='Password' type='password'/>
+                                <Field name='password' component={Input} placeholder='Password' type='password'
+                                       validate={composeValidators(required,maxValue(10))}/>
                             </div>
                             <div className={s.checkBoxDiv}>
-                                <Field name='rememberMe' component='input' type='checkbox'/>
+                                <Field name='rememberMe' component={Input} type='checkbox'/>
                                 <label className={s.rememberMe}>Remember me</label>
                             </div>
                             <div>

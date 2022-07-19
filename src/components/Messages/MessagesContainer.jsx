@@ -1,8 +1,6 @@
-import {addMessage, updateNewMessage,} from "../../redux/messagesReducer";
+import {addMessage} from "../../redux/messagesReducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
-import {Navigate} from "react-router-dom";
-import React from "react";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
@@ -10,13 +8,12 @@ let mapStateToProps = (state) => {
     return {
         dialogs: state.messagesPage.dialogs,
         messages: state.messagesPage.messages,
-        newMessageText: state.messagesPage.newMessageText,
         isAuth: state.auth.isAuth
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {addMessage, updateNewMessage}),
+    connect(mapStateToProps, {addMessage}),
     withAuthRedirect
 ) (Messages);
 
