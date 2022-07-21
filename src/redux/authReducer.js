@@ -13,9 +13,6 @@ let initialState = {
     login: null,
     isAuth: false,
     isFetching: false,
-    password: null,
-    rememberMe: false,
-    captcha: false
 }
 
 const authReducer = (state = initialState, action) => {
@@ -23,14 +20,9 @@ const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
             }
-        case SET_LOGIN:
-            return {
-                ...state,
-                ...action.data
-            }
+
         // case SET_PHOTO:
         //     return {
         //         ...state,
@@ -41,7 +33,7 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuthUserData = (id, email, login) => ({type:SET_USER_DATA, data:{id, email, login}});
+export const setAuthUserData = (id, email, login, isAuth) => ({type:SET_USER_DATA, payload:{id, email, login, isAuth}});
 export const setLogin = (email, password, rememberMe, captcha) => ({type:SET_LOGIN, data:{email, password, rememberMe, captcha}});
 // export const setAuthPhoto = (photo) => ({type: SET_PHOTO, photo});
 
@@ -50,25 +42,32 @@ export const authMe = () => {
         authAPI.me()
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login))
+                    dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true))
                 }
             })
     }
 }
 
-export const login = () => {
+export const login = (email, password, rememberMe) => {
     return (dispatch) => {
-        authAPI.login()
+        authAPI.login(email, password, rememberMe)
             .then(data => {
                 if(data.resultCode === 0) {
-                    dispatch (setLogin(data.data.email, data.data.password, data.data.rememberMe, data.data.captcha));
+                    dispatch(authMe())
                 }
-
             })
     }
 }
 
-
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout()
+            .then(data => {
+                if(data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false))                }
+            })
+    }
+}
 
 
 

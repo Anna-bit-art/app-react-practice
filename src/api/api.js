@@ -8,6 +8,8 @@ const users = axios.create({
         'API-KEY': 'da71eae0-46cf-4f59-8d46-d01d15e90512'
     }
 })
+
+
 export const UsersApi = {
     getUsers(pageSize, currentPage) {
         return users.get(`users?count=${pageSize}&page=${currentPage}`)
@@ -24,19 +26,22 @@ export const UsersApi = {
     profile(userId) {
         console.warn('Obsolete method. Please use profileAPI object.')
         return profileAPI.getProfile(userId)
-    },
-
-
+    }
 }
+
 
 export const authAPI = {
     me() {
         return users.get('auth/me')
             .then(response => response.data);
     },
-    login() {
-        return users.post(`auth/login`)
+    login(email, password, rememberMe = false) {
+        return users.post(`auth/login`, {email, password, rememberMe})
             .then(response => response.data);
+    },
+    logout(){
+        return users.delete(`auth/login`)
+            .then(response => response.data)
     }
 }
 

@@ -2,48 +2,54 @@
     text-align: center;
 }
 
-.loginPage{
-    max-width: 500px;
+.loginForm {
+    max-width: 700px;
     margin: 10px auto;
     border: 1px solid #ccc;
     padding: 20px;
+    border-radius: 3px;
 }
 
-form.loginPage div {
-    display: flex;
-    flex-flow: row nowrap;
-    line-height: 2em;
-    margin: 5px;
-}
-
-form div label {
+.loginForm div {
+      display: flex;
+      flex-flow: row nowrap;
+      line-height: 2em;
+      margin: 5px;
+  }
+.loginForm label{
     color: #333;
     width: 110px;
     font-size: 1em;
     line-height: 32px;
-}
-.rememberMe{
-    font-size: .8em;
-}
-input {
-    flex: 1;
-    font-size: 1em;
-    padding: 3px 5px;
-    margin-left: 15px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.checkBoxDiv {
-    align-items: center;
-    width: 50%;
-    margin: 0 auto;
-}
-
-input[type='checkbox'] {
+ }
+.loginForm input {
+     flex: 1;
+     padding: 3px 5px;
+     font-size: 1em;
+     margin-left: 15px;
+     border: 1px solid #ccc;
+     border-radius: 3px;
+ }
+.loginForm input[type='checkbox'] {
     flex: none;
+    margin-top: 7px;
+    margin-left: 125px;
+}
+.checkbox label {
+    font-size: .9em;
+    margin-top: 3px;
 }
 
-.buttonLogin {
-    margin: 0 auto;
+.loginForm span{
+    line-height: 32px;
+    margin-left: 10px;
+    font-weight: normal;
+    color: rgb(179,22,111);
+    font-size: .9em;
+}
+.loginForm button {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin: 15px auto;
 }
