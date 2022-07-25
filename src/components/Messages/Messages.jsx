@@ -3,8 +3,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 import {Field, Form} from "react-final-form";
-import {Textarea} from "../common/formsControl/formsControls";
-import {maxValue} from "../../utils/validators";
+
 
 const Messages = (props) => {
 
@@ -28,29 +27,54 @@ const Messages = (props) => {
     )
 }
 
+export default Messages;
 
 const MessageForm = (props) => {
-    const onSubmit = (formData) => {
-        console.log(formData)
-        props.addMessage(formData.message);
+    const onSubmit = (e) => {
+        console.log(e)
+        props.addMessage(e.message);
     }
-    return (
-        <Form onSubmit={onSubmit}>
-            {({handleSubmit}) => (
-                <form onSubmit={handleSubmit}>
-                    <Field name={'message'} component={Textarea} type={'text'} placeholder={'Send a message...'}
-                           validate={maxValue(10)}/>
-                    <button>Send</button>
-                </form>
-            )}
-        </Form>
-    )
+    return <Form
+        onSubmit={onSubmit}
+        render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
 
+                <Field
+                    name="message"
+                    render={({ input, meta }) => (
+                        <div>
+                            <textarea {...input} placeholder={'Send a message...'}/>
+                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                        </div>
+                    )}
+                />
+                <button>Send</button>
+            </form>
+        )}
+    />
 }
 
 
-export default Messages;
 
 
+
+
+
+
+// <Form onSubmit={onSubmit}>
+//     {({handleSubmit}) => (
+//         <form onSubmit={handleSubmit}>
+//             <Field name='post' validate={maxValue(5)}>
+//                 {({input, meta})=> (
+//                     <div>
+//                         <textarea {...input} placeholder={'Send a message...'}/>
+//                         {meta.error && meta.touched && <span>{meta.error}</span>}
+//                     </div>
+//                 )}
+//             </Field>
+//             <button>Send</button>
+//         </form>
+//     )}
+// </Form>
 
 

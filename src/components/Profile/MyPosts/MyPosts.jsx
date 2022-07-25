@@ -2,8 +2,6 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
 import { Form, Field } from 'react-final-form';
-import {maxValue} from "../../../utils/validators";
-import {Textarea} from "../../common/formsControl/formsControls";
 
 
 const  MyPosts = (props) => {
@@ -26,32 +24,45 @@ const  MyPosts = (props) => {
         </>
     )
 };
-
-
-
-const MyPostForm = (props) => {
-   const onSubmit = (formData) => {
-       console.log(formData)
-       props.addPost(formData.myPost);
-   }
-    return (
-        <Form onSubmit={onSubmit}>
-            {({handleSubmit}) => (
-                <form onSubmit={handleSubmit}>
-                    <Field name={'myPost'} component={Textarea} type={'text'} placeholder={'Make your the new post...'}
-                           validate={maxValue(250)}/>
-                    <button>Send</button>
-                </form>
-            )}
-        </Form>
-    )
-
-}
-
 export default MyPosts;
 
 
-// <textarea onChange={onPostChange} placeholder='Make your the new post...'
-//           value={props.newPostText}/>
-// <button onClick={onAddPost}><a href='#'>Send</a></button>
+const MyPostForm = (props) => {
+    const onSubmit = (e) => {
+        props.addPost(e.post)
+    }
+    const validate = (e) => {
+        const errors = {}
+        if (e.post && e.post.length > 5) {
+            errors.post = 'Max length is 100'
+        } else if (!e.post || e.post === ' '){
+            errors.post = ' '
+        }
+        return errors;
+    }
+   return <Form
+        onSubmit={onSubmit}
+        validate={validate}
+        render={({ handleSubmit }) => (
+            <form onSubmit={handleSubmit}>
+
+                <Field
+                    name="post"
+                    render={({ input, meta }) => (
+                        <div>
+                            <textarea {...input} placeholder={'Make your post...'} className={meta.touched && meta.error && s.error} />
+                            {meta.touched && meta.error && <span>{meta.error}</span>}
+                        </div>
+                    )}
+                />
+                <button type="submit">Send</button>
+            </form>
+        )}
+    />
+}
+
+
+
+
+
 

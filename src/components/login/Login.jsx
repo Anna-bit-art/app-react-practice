@@ -3,61 +3,73 @@ import s from "./Login.module.css";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {login} from "../../redux/authReducer";
-import {required, maxValue, composeValidators} from "../../utils/validators";
-import {Input} from "../common/formsControl/formsControls";
+import {Navigate} from "react-router-dom";
 
+const required = value => (value ? undefined : 'Required')
 
 const LoginForm = (props) => {
-
-    const onSubmit = (formData) => {
-        console.log(formData)
-        props.login(formData)
+    const onSubmit = (e) => {
+        props.login(e.email, e.password, e.rememberMe)
     }
-    return (
-        <>
-            <h3 className={s.login}>Login</h3>
 
+    if(props.isAuth) return <Navigate to={"/profile"} />
+
+    return <>
+            <h3 className={s.login}>Login</h3>
             <Form
                 onSubmit={onSubmit}
+                render={({handleSubmit}) => (
+                    <>
+                        <form onSubmit={handleSubmit} className={s.loginForm}>
 
-            >
-                {({handleSubmit}) => (
-                    <div>
-                        <form onSubmit={handleSubmit} className={s.loginPage}>
-                            <div>
-                                <label>Email</label>
-                                <Field name='email' component={Input} placeholder='email' type='email'
-                                        validate={composeValidators(required,maxValue(10))}/>
-                            </div>
-                            <div>
-                                <label>Password</label>
-                                <Field name='password' component={Input} placeholder='Password' type='password'
-                                       validate={composeValidators(required,maxValue(10))}/>
-                            </div>
-                            <div className={s.checkBoxDiv}>
-                                <Field name='rememberMe' component={Input} type='checkbox'/>
-                                <label className={s.rememberMe}>Remember me</label>
-                            </div>
-                            <div>
-                                <button className={s.buttonLogin}>Login</button>
-                            </div>
+                            <Field name='email' validate={required} >
+                                {({input, meta})=> (
+                                    <div>
+                                        <label>Email</label>
+                                        <input {...input} type='email'/>
+                                        {(meta.error || meta.submitError) && meta.touched &&
+                                        (<span>{meta.error || meta.submitError}</span>)}
+                                    </div>
+                                )}
+                            </Field>
+
+                            <Field name='password' validate={required} >
+                                {({input, meta})=> (
+                                    <div>
+                                        <label>Password</label>
+                                        <input {...input} type='password'/>
+                                        {(meta.error || meta.submitError) && meta.touched &&
+                                        (<span>{meta.error || meta.submitError}</span>)}
+                                    </div>
+                                )}
+                            </Field>
+
+                            <Field name='checkbox' type='checkbox'>
+                                {({input})=> (
+                                    <div className={s.checkbox}>
+                                        <input {...input} type='checkbox'/>
+                                        <label>Remember me</label>
+                                    </div>
+                                )}
+                            </Field>
+
+                            { props.errorMessage && <div className={s.error}>{props.errorMessage}</div> }
+
+                            <button type='submit'>Login</button>
                         </form>
-                    </div>
-                )
+                    </>
+                    )
                 }
-            </Form>
+            />
         </>
-    )
-
 }
 
 const mapStateToProps = (state) => {
     return {
-        email: state.auth.email,
-        password: state.auth.password,
-        rememberMe: state.auth.rememberMe,
-        captcha: state.auth.captcha
+        isAuth: state.auth.isAuth,
+        errorMessage: state.auth.errorMessage
     }
+
 }
 
 export default compose (
@@ -65,4 +77,3 @@ export default compose (
 ) (LoginForm)
 
 
-// export default Login;
