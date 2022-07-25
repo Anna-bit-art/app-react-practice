@@ -10,7 +10,7 @@ class  ProfileClass extends React.Component {
     componentDidMount() {
         let userId = this.props.router.params.userId;
         if(!userId){
-            userId = 24282;
+            userId = this.props.authorizedUserId;
         }
         this.props.profileUser(userId);
         this.props.profileStatus(userId);
@@ -18,7 +18,7 @@ class  ProfileClass extends React.Component {
     render () {
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+                <Profile {...this.props} id={this.props.id} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
             </div>
         )
     }
@@ -27,7 +27,8 @@ class  ProfileClass extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        authorizedUserId: state.auth.id
     }
 }
 

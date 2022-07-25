@@ -41,15 +41,13 @@ export const setAuthUserData = (id, email, login, isAuth) => ({type:SET_USER_DAT
 export const setError = (errorMessage) => ({type: SET_ERROR, errorMessage})
 // export const setAuthPhoto = (photo) => ({type: SET_PHOTO, photo});
 
-export const authMe = () => {
-    return (dispatch) => {
-        authAPI.me()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true))
-                }
-            })
-    }
+export const authMe = () => (dispatch) => {
+    return authAPI.me()
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthUserData(data.data.id, data.data.email, data.data.login, true))
+            }
+        })
 }
 
 export const login = (email, password, rememberMe) => {
@@ -71,7 +69,8 @@ export const logout = () => {
         authAPI.logout()
             .then(data => {
                 if(data.resultCode === 0) {
-                    dispatch(setAuthUserData(null, null, null, false))                }
+                    dispatch(setAuthUserData(null, null, null, false))
+                }
             })
     }
 }

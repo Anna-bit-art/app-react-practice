@@ -5,10 +5,7 @@ import {compose} from "redux";
 import {login} from "../../redux/authReducer";
 import {Navigate} from "react-router-dom";
 
-
 const required = value => (value ? undefined : 'Required')
-
-
 
 const LoginForm = (props) => {
     const onSubmit = (e) => {

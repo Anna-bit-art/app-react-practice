@@ -48,30 +48,25 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    // withAuthRedirect,
     connect(mapStateToProps, {toggleInProgress, getUsers, deleteUser, followUsers})
 )
 (UsersClass);
 
 
+
+
+
+
+
+
+
+
+
+
+
 // const UsersContainer = withAuthRedirect (
 //     connect(mapStateToProps, {toggleInProgress, getUsers, deleteUser, followUsers}) (UsersClass)
 // );
-
-// export default UsersContainer;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // let mapDispatchToProps = (dispatch) => {
 //     return {
