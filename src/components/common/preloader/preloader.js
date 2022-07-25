@@ -1,11 +1,12 @@
-import preLoader from "../../../img/spinner.svg";
 import React from "react";
-import s from "./preloader.css";
 
-let Preloader = (props) => {
-    return <div className={s.preloader}>
-        <img alt='preloader' src={preLoader}/>
+let Preloader = () => {
+    return (
+        <div className="spinner-container">
+            <div className="loading-spinner">
             </div>
+        </div>
+    )
 
 }
 
