@@ -35,7 +35,7 @@ export const authAPI = {
         return users.get('auth/me')
             .then(response => response.data);
     },
-    login(email, password, rememberMe = false) {
+    login(email, password, rememberMe) {
         return users.post(`auth/login`, {email, password, rememberMe})
             .then(response => response.data);
     },
@@ -59,38 +59,6 @@ export const profileAPI = {
 }
 
 
-
-
-
-
-
-// axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials:true})
-//     .then(response => {
-//         if(response.data.resultCode === 0) {
-//             let {id, email, login} = response.data.data;
-//             this.props.setAuthUserData(id, email, login);
-//         }
-//     })
-
-// const follow = axios.create({
-//     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
-//     data:  {},
-//     withCredentials: true,
-//     headers:{
-//         'API-KEY': 'da71eae0-46cf-4f59-8d46-d01d15e90512'
-//     }
-// })
-//
-// export const UserFollow = {
-//     followUser(userId) {
-//         return follow.post(`follow/${userId}`)
-//             .then(response => response.data);
-//     },
-//     removeUser(userId) {
-//         return follow.delete(`follow/${userId}`)
-//             .then(response => response.data);
-//     }
-// }
 
 
 

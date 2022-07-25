@@ -38,17 +38,3 @@ export default compose(
 )(ProfileClass);
 
 
-
-// let AuthRedirectComponent = withAuthRedirect(ProfileClass);
-// const ProfileContainer = connect (mapStateToProps, {profileUser}) (withRouter(AuthRedirectComponent));
-// function withRouter(Component) {
-//         function ComponentWithRouterProps(props) {
-//             let location = useLocation();
-//             let navigate = useNavigate();
-//             let params = useParams();
-//             return (
-//                 <Component {...props} router={{location, navigate, params}}/>
-//             );
-//         }
-//         return ComponentWithRouterProps;
-//     }

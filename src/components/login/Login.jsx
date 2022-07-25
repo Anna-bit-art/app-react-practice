@@ -7,16 +7,16 @@ import {Navigate} from "react-router-dom";
 
 
 const required = value => (value ? undefined : 'Required')
-const minValue = value =>
-    value && value.length >= 8 ? undefined : "Min length is " + 8
+
 
 
 const LoginForm = (props) => {
     const onSubmit = (e) => {
-        console.log(e)
         props.login(e.email, e.password, e.rememberMe)
     }
+
     if(props.isAuth) return <Navigate to={"/profile"} />
+
     return <>
             <h3 className={s.login}>Login</h3>
             <Form
@@ -30,17 +30,19 @@ const LoginForm = (props) => {
                                     <div>
                                         <label>Email</label>
                                         <input {...input} type='email'/>
-                                        {meta.error && meta.touched && <span>{meta.error}</span>}
+                                        {(meta.error || meta.submitError) && meta.touched &&
+                                        (<span>{meta.error || meta.submitError}</span>)}
                                     </div>
                                 )}
                             </Field>
 
-                            <Field name='password' validate={minValue} >
+                            <Field name='password' validate={required} >
                                 {({input, meta})=> (
                                     <div>
                                         <label>Password</label>
                                         <input {...input} type='password'/>
-                                        {meta.error && meta.touched && <span>{meta.error}</span>}
+                                        {(meta.error || meta.submitError) && meta.touched &&
+                                        (<span>{meta.error || meta.submitError}</span>)}
                                     </div>
                                 )}
                             </Field>
@@ -53,7 +55,10 @@ const LoginForm = (props) => {
                                     </div>
                                 )}
                             </Field>
-                                <button>Login</button>
+
+                            { props.errorMessage && <div className={s.error}>{props.errorMessage}</div> }
+
+                            <button type='submit'>Login</button>
                         </form>
                     </>
                     )
@@ -64,7 +69,8 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        errorMessage: state.auth.errorMessage
     }
 
 }

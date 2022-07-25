@@ -53,3 +53,11 @@
     justify-content: center;
     margin: 15px auto;
 }
+.loginForm .error{
+    display: flex;
+    line-height: 32px;
+    font-size: 1em;
+    color: rgb(179,22,111);
+    flex-flow: row nowrap;
+    justify-content: center;
+}

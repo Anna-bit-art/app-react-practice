@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar/Nav";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import Setting from "./components/Setting/Setting";
 import News from "./components/News/News";
-import Music from "./components/Music/Music";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -23,7 +22,6 @@ const App = () => {
                         <Route path='/profile/*' element={<ProfileContainer />}/>
                         <Route path='/messages' element={<MessagesContainer />}/>
                         <Route path='/news' element={<News />}/>
-                        <Route path='/music' element={<Music />}/>
                         <Route path='/setting' element={<Setting />}/>
                         <Route path='/users' element={<UsersContainer />}/>
                         <Route path='/login' element={<Login />}/>

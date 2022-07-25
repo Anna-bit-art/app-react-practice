@@ -29,18 +29,15 @@ export default MyPosts;
 
 const MyPostForm = (props) => {
     const onSubmit = (e) => {
-        console.log(e)
         props.addPost(e.post)
-
     }
     const validate = (e) => {
         const errors = {}
         if (e.post && e.post.length > 5) {
-            errors.post = 'Max length is 5'
+            errors.post = 'Max length is 100'
         } else if (!e.post || e.post === ' '){
             errors.post = ' '
         }
-
         return errors;
     }
    return <Form
@@ -58,7 +55,7 @@ const MyPostForm = (props) => {
                         </div>
                     )}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit">Send</button>
             </form>
         )}
     />
