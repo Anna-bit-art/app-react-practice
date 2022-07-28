@@ -57,6 +57,10 @@ const LoginForm = (props) => {
 
                             <button type='submit'>Login</button>
                         </form>
+                        <div className={s.enter}>
+                            <p><span>email:</span> ann.shalnova@gmail.com</p>
+                            <p><span>password:</span> 12345678</p>
+                        </div>
                     </>
                     )
                 }

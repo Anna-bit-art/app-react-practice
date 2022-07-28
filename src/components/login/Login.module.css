@@ -61,3 +61,18 @@
     flex-flow: row nowrap;
     justify-content: center;
 }
+.enter{
+    display: flex;
+    flex-flow: column;
+    max-width: 700px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 3px;
+}
+.enter p{
+    margin: 0;
+}
+.enter span{
+    font-weight: bold;
+}
