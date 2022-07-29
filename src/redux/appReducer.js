@@ -22,7 +22,6 @@ export const setInitialisedSuccess = () => ({ type:INITIALIZED_SUCCESS })
 
 export const initializeApp = () => (dispatch) => {
     let promise = dispatch (authMe())
-    debugger;
     promise.then(() => {
         dispatch (setInitialisedSuccess())
     })

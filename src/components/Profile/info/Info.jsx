@@ -32,7 +32,7 @@ const Info = (props) => {
 
                     <div className={s.userAnswer}>
                         <ul>
-                            <li>{(props.profile.lookingForAJob) ? 'yes' : 'no'}</li>
+                            <li>{(props.profile.lookingForAJob) ? 'yes' : ''}</li>
                             <li>{props.profile.lookingForAJobDescription}</li>
                             <li>{props.profile.aboutMe}</li>
                         </ul>

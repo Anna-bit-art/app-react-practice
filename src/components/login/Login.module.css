@@ -2,7 +2,7 @@
     text-align: center;
 }
 
-.loginForm {
+.loginForm, .enter {
     max-width: 700px;
     margin: 10px auto;
     border: 1px solid #ccc;
@@ -11,68 +11,72 @@
 }
 
 .loginForm div {
-      display: flex;
-      flex-flow: row nowrap;
-      line-height: 2em;
-      margin: 5px;
-  }
-.loginForm label{
+    display: flex;
+    flex-flow: row nowrap;
+    line-height: 2em;
+    margin: 5px;
+}
+
+.loginForm label {
     color: #333;
     width: 110px;
     font-size: 1em;
     line-height: 32px;
- }
+}
+
 .loginForm input {
-     flex: 1;
-     padding: 3px 5px;
-     font-size: 1em;
-     margin-left: 15px;
-     border: 1px solid #ccc;
-     border-radius: 3px;
- }
+    flex: 1;
+    padding: 3px 5px;
+    font-size: 1em;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
 .loginForm input[type='checkbox'] {
     flex: none;
     margin-top: 7px;
     margin-left: 125px;
 }
+
 .checkbox label {
     font-size: .9em;
     margin-top: 3px;
 }
 
-.loginForm span{
+.loginForm span {
     line-height: 32px;
     margin-left: 10px;
     font-weight: normal;
-    color: rgb(179,22,111);
+    color: rgb(179, 22, 111);
     font-size: .9em;
 }
+
 .loginForm button {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     margin: 15px auto;
 }
-.loginForm .error{
+
+.loginForm .error {
     display: flex;
     line-height: 32px;
     font-size: 1em;
-    color: rgb(179,22,111);
+    color: rgb(179, 22, 111);
     flex-flow: row nowrap;
     justify-content: center;
 }
-.enter{
+
+.enter {
     display: flex;
     flex-flow: column;
-    max-width: 700px;
-    margin: 10px auto;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 3px;
 }
-.enter p{
+
+.enter p {
     margin: 0;
 }
-.enter span{
+
+.enter span {
     font-weight: bold;
 }

@@ -5,11 +5,13 @@ import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 import thunkMiddleware from "redux-thunk";
 import appReducer from "./appReducer";
+import newsReducer from "./newsReducer";
 
 const {createStore} = require("redux");
 let reducers = combineReducers({
     profilePage: profileReducer,
     messagesPage: messagesReducer,
+    newsPage: newsReducer,
     usersPage: usersReducer,
     auth: authReducer,
     app: appReducer
