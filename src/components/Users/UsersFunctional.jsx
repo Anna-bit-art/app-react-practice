@@ -22,13 +22,13 @@ let UsersFunctional = (props) => {
                 <div className={s.user}>
                     <div className={s.userPhoto}>
                         <NavLink to={'/profile/' + u.id}>
-                            <img alt='photo' src={ u.photos.small != null ? u.photos.small : userPhoto }/>
+                            <img alt='profilePhoto' src={ u.photos.small != null ? u.photos.small : userPhoto }/>
                         </NavLink>
                     </div>
                     <div className={s.userInfo}>
                         <h4 className={s.userFullName}>{u.name}</h4>
                         <h5 className={s.userStatus}>{u.status != null ? u.status : 'No status'}</h5>
-                        <h5 className={s.userLocation}>{'u.location.city'}, {'u.location.country'}</h5>
+                        {/*<h5 className={s.userLocation}>{'u.location.city'}, {'u.location.country'}</h5>*/}
                     </div>
                     <div className={s.userFollow}>
 
@@ -37,7 +37,7 @@ let UsersFunctional = (props) => {
                                 onClick={() => { props.deleteUser(u.id)} }>Unfollow</button>
 
                             : <button disabled={props.followingInProgress.some(userId=> userId === u.id)}
-                                onClick={() => {props.followUsers(u.id)}}>Follow</button>
+                                onClick={() => {props.followUser(u.id)}}>Follow</button>
                         }
                     </div>
                 </div>
