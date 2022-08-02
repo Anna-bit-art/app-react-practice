@@ -1,8 +1,8 @@
 import s from './Info.module.css';
 import Preloader from "../../common/preloader/preloader";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import userPhoto from "../../../img/catAvatar2.jpeg";
 import React from "react";
+import ProfileStatus from "./ProfileStatus/ProfileStatusClass";
 
 const Info = (props) => {
 
