@@ -18,13 +18,6 @@ import {
 class UsersClass extends React.Component {
     componentDidMount() {
         this.props.requestUsers(this.props.pageSize, this.props.currentPage);
-        // this.props.toggleIsFetching(true);
-        // UsersApi.requestUsers(this.props.pageSize, this.props.currentPage)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false);
-        //         this.props.setUsers(data.items);
-        //         // this.props.setTotalUsersCount(response.data.totalCount);-
-        //     })
     }
     onPageChange = (pageNumber) => {
         this.props.requestUsers(this.props.pageSize, pageNumber);
@@ -39,13 +32,14 @@ class UsersClass extends React.Component {
                              users={this.props.users}
                              followingInProgress={this.props.followingInProgress}
                              deleteUser={this.props.deleteUser}
-                             followUser={this.props.followUser}/>
+                             followUser={this.props.followUser}
+
+            />
             </>
     }
 }
 
 let mapStateToProps = (state) => {
-
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
@@ -61,7 +55,7 @@ export default compose(
 )
 (UsersClass);
 
-
+ 
 
 
 

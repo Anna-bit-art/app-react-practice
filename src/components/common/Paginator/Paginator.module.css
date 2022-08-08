@@ -1,0 +1,14 @@
+.selectedPage {
+    font-weight: bold;
+    color: #78be21;
+}
+
+.unselectedPage {
+    font-weight: normal;
+    color: #696969;
+}
+
+.unselectedPage:hover {
+    color: #78be21;
+    cursor: pointer;
+}

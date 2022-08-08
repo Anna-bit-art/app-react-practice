@@ -8,8 +8,6 @@ const Navbar = () => {
         <div><NavLink to='/messages'>Messages</NavLink></div>
         <div><NavLink to='/news'>News</NavLink></div>
         <div><NavLink to='/users'>Users</NavLink></div>
-        <br/>
-        <div><NavLink to='/setting'>Setting</NavLink></div>
     </nav>
 }
 

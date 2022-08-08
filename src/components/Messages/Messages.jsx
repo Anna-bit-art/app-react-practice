@@ -56,25 +56,3 @@ const MessageForm = (props) => {
 
 
 
-
-
-
-
-
-// <Form onSubmit={onSubmit}>
-//     {({handleSubmit}) => (
-//         <form onSubmit={handleSubmit}>
-//             <Field name='post' validate={maxValue(5)}>
-//                 {({input, meta})=> (
-//                     <div>
-//                         <textarea {...input} placeholder={'Send a message...'}/>
-//                         {meta.error && meta.touched && <span>{meta.error}</span>}
-//                     </div>
-//                 )}
-//             </Field>
-//             <button>Send</button>
-//         </form>
-//     )}
-// </Form>
-
-

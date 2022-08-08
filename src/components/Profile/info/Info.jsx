@@ -2,7 +2,7 @@ import s from './Info.module.css';
 import Preloader from "../../common/preloader/preloader";
 import userPhoto from "../../../img/catAvatar2.jpeg";
 import React from "react";
-import ProfileStatus from "./ProfileStatus/ProfileStatusClass";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 const Info = (props) => {
 
@@ -15,7 +15,6 @@ const Info = (props) => {
             }
             </div>
             <div className={s.photoInfo}>
-                {/*<h3>Freddie Mercury</h3>*/}
                 <h3>{props.profile.fullName}</h3>
 
                 <ProfileStatus status={props.status} updateStatus={props.updateStatus} />

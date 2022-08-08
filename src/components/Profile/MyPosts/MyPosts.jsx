@@ -1,18 +1,16 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
-import { Form, Field } from 'react-final-form';
+import {Field, Form} from 'react-final-form';
 
 
-const  MyPosts = (props) => {
-
+function MyPosts(props) {
     return (
         <>
             <h1> My posts </h1>
             <div className={s.field}>
                 <MyPostForm addPost={props.addPost}/>
             </div>
-
 
             <div className={s.posts}>
                 <div>
@@ -23,9 +21,9 @@ const  MyPosts = (props) => {
             </div>
         </>
     )
-};
-export default MyPosts;
+}
 
+export default MyPosts;
 
 const MyPostForm = (props) => {
     const onSubmit = (e) => {
@@ -33,7 +31,7 @@ const MyPostForm = (props) => {
     }
     const validate = (e) => {
         const errors = {}
-        if (e.post && e.post.length > 5) {
+        if (e.post && e.post.length > 100) {
             errors.post = 'Max length is 100'
         } else if (!e.post || e.post === ' '){
             errors.post = ' '
