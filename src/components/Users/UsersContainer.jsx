@@ -9,7 +9,7 @@ import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
-    getPageSize,
+    getPageSize, getPortionSize,
     getTotalUsersCount,
     getUsers
 } from "../../redux/usersSelectors";
@@ -25,8 +25,9 @@ class UsersClass extends React.Component {
     render = () => {
         return <>
             { this.props.isFetching ? <Preloader /> : null }
-            <UsersFunctional totalUsersCount={this.props.totalUsersCount}
+            <UsersFunctional totalItemsCount={this.props.totalItemsCount}
                              pageSize={this.props.pageSize}
+                             portionSize={this.props.portionSize}
                              currentPage={this.props.currentPage}
                              onPageChange={this.onPageChange}
                              users={this.props.users}
@@ -43,7 +44,8 @@ let mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
+        portionSize: getPortionSize(state),
+        totalItemsCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         followingInProgress: getFollowingInProgress(state)
@@ -55,30 +57,3 @@ export default compose(
 )
 (UsersClass);
 
- 
-
-
-
-
-
-
-
-
-
-
-
-// const UsersContainer = withAuthRedirect (
-//     connect(mapStateToProps, {toggleInProgress, requestUsers, deleteUser, followUser}) (UsersClass)
-// );
-
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         following: (userId) => {dispatch(followingAC(userId))},
-//         remove: (userId) => {dispatch(removeAC(userId))},
-//         setUsers: (users) => {dispatch(setUsersAC(users))},
-//         setCurrentPage: (pageNumber) => {dispatch(setCurrentPageAC(pageNumber))},
-//         setTotalUsersCount: (totalCount) => {dispatch(setTotalUsersCountAC(totalCount))},
-//         toggleIsFetching: (isFetching) => {dispatch(toggleIsFetchingAC(isFetching))}
-//     }
-// }
-// let AuthRedirectComponent = withAuthRedirect(UsersClass);

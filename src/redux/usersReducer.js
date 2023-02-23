@@ -9,18 +9,10 @@ const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
 const TOGGLE_IN_PROGRESS = 'users/TOGGLE_IN_PROGRESS';
 
 let initialState = {
-        users: [
-            // { id: 1, photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ5J4z_a4KoMnaFB478xmoxOc_ghPx4Vs6kh6rz-rDYwl9M-qo0vaGvpZfpiTJb-bt13w&usqp=CAU',
-            //     followed: true, fullName: 'David Bowie', status: 'Life looks like a play field', location: { city: 'London', country: 'US'} },
-            // { id: 2, photoUrl: 'https://los40es00.epimg.net/los40/imagenes/2021/07/05/los40classic/1625487493_767308_1625487832_noticia_normal_amp.jpg',
-            //     followed: false, fullName: 'Queen', status: 'We are the champions', location: { city: 'London', country: 'US'} },
-            // { id: 3, photoUrl: 'https://jenesaispop.com/wp-content/uploads/2022/01/kanyewest-696x316.jpg',
-            //     followed: false, fullName: 'Kanye West', status: 'ye ', location: { city: 'Chicago', country: 'USA'} },
-            // { id: 4, photoUrl: 'https://cdnimg.rg.ru/img/content/131/01/78/850_4_d_850.jpg',
-            //     followed: true, fullName: 'Jared Leto', status: 'Bartholomew Cubbins', location: { city: 'Louisiana', country: 'USA'} },
-        ],
+        users: [],
         pageSize: 7,
-        totalUsersCount: 300,
+        portionSize: 20,
+        totalUsersCount: null,
         currentPage: 1,
         isFetching: false,
         followingInProgress: [],
@@ -49,7 +41,6 @@ const usersReducer = (state = initialState, action) => {
                 })
             }
         case SET_USERS: {
-            // return { ...state, users: [ ...state.users, ...action.users] }
             return { ...state, users: [ ...action.users] }
         }
         case SET_TOTAL_USERS_COUNT: {
@@ -88,7 +79,7 @@ export const requestUsers = (pageSize, page) => async (dispatch) => {
     dispatch(setCurrentPage(page));
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(response.items));
-    // dispatch (setTotalUsersCount(data.totalCount));
+    dispatch (setTotalUsersCount(response.totalCount));
 }
 
 const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
@@ -107,46 +98,6 @@ export const deleteUser = (userId) => (dispatch) => {
 export const followUser = (userId) => (dispatch) => {
     return followUnfollowFlow(dispatch, userId, UsersApi.followUser.bind(UsersApi), unfollow)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-// export const deleteUser = (userId) => (dispatch) => {
-//     dispatch(toggleInProgress(true, userId));
-//     let response = await UsersApi.removeUser(userId)
-//     if (response.resultCode === 0) {
-//         dispatch(follow(userId))
-//     }
-//     dispatch(toggleInProgress(false, userId));
-// }
-
-// export const followUser = (userId) => (dispatch) => {
-//     dispatch(toggleInProgress(true, userId));
-//     let response = await UsersApi.followUser(userId)
-//     if (response.resultCode === 0) {
-//         dispatch(unfollow(userId))
-//     }
-//     dispatch(toggleInProgress(false, userId));
-// }
-
-
-
-
-
-
-
-
-
-
-
 
 
 export default usersReducer;
