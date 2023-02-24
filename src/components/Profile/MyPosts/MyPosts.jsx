@@ -9,7 +9,7 @@ function MyPosts(props) {
         <>
             {props.isOwner &&
             <div>
-                <h1> My posts </h1>
+                <h1>My posts</h1>
                 <div className={s.field}>
                     <MyPostForm addPost={props.addPost}/>
                 </div>
@@ -17,7 +17,9 @@ function MyPosts(props) {
                 <div className={s.posts}>
                     <div>
                         {props.posts.map(p => (
-                            <Post id={p.id} like={p.likesCount} key={p.id} text={p.text} profile={props.profile}/>
+                            <Post id={p.id} like={p.likesCount}
+                                  key={p.id} text={p.text}
+                                  profile={props.profile} />
                         ))}
                     </div>
                 </div>

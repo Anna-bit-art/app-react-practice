@@ -20,8 +20,8 @@ const Info = (props) => {
                 <img alt='img' src={ props.profile.photos.large ? props.profile.photos.large : userPhoto } />
                 { props.isOwner &&
                     <>
-                        <input type={'file'} onChange={onMainPhotoSelected} id='select' hidden />
-                        <label htmlFor='select'>Change photo</label>
+                        <input type={'file'} onChange={onMainPhotoSelected} id='select' hidden/>
+                        <label htmlFor='select'>Choose file</label>
                     </>
                 }
 

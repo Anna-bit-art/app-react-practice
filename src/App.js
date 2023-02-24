@@ -1,17 +1,17 @@
 import './App.css';
 import React from "react";
+import {Component} from "react";
+import {connect} from "react-redux";
 import {Route, Routes} from "react-router-dom";
 import Navbar from "./components/Navbar/Nav";
-import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import Login from "./components/login/Login.jsx";
-import {Component} from "react";
-import {connect} from "react-redux";
-import {initializeApp} from "./redux/appReducer";
 import Preloader from "./components/common/preloader/preloader";
-import NewsContainer from "./components/News/NewsContainer";
+import {initializeApp} from "./redux/appReducer";
 
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const NewsContainer = React.lazy(() => import('./components/News/NewsContainer'));
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'));
 
 
