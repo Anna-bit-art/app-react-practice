@@ -7,48 +7,55 @@ import {Field, Form} from 'react-final-form';
 function MyPosts(props) {
     return (
         <>
-            <h1> My posts </h1>
-            <div className={s.field}>
-                <MyPostForm addPost={props.addPost}/>
-            </div>
+            {props.isOwner &&
+            <div>
+                <h1> My posts </h1>
+                <div className={s.field}>
+                    <MyPostForm addPost={props.addPost}/>
+                </div>
 
-            <div className={s.posts}>
-                <div>
-                    {props.posts.map(p => (
-                        <Post id={p.id} like={p.likesCount} key={p.id} text={p.text} profile={props.profile}/>
-                    ))}
+                <div className={s.posts}>
+                    <div>
+                        {props.posts.map(p => (
+                            <Post id={p.id} like={p.likesCount} key={p.id} text={p.text} profile={props.profile}/>
+                        ))}
+                    </div>
                 </div>
             </div>
+            }
         </>
+
     )
 }
 
 export default MyPosts;
 
+
 const MyPostForm = (props) => {
     const onSubmit = (e) => {
-        props.addPost(e.post)
+        props.addPost(e.post);
     }
     const validate = (e) => {
         const errors = {}
         if (e.post && e.post.length > 100) {
             errors.post = 'Max length is 100'
-        } else if (!e.post || e.post === ' '){
+        } else if (!e.post || e.post === ' ') {
             errors.post = ' '
         }
         return errors;
     }
-   return <Form
+    return <Form
         onSubmit={onSubmit}
         validate={validate}
-        render={({ handleSubmit }) => (
+        render={({handleSubmit}) => (
             <form onSubmit={handleSubmit}>
 
                 <Field
                     name="post"
-                    render={({ input, meta }) => (
+                    render={({input, meta}) => (
                         <div>
-                            <textarea {...input} placeholder={'Make your post...'} className={meta.touched && meta.error && s.error} />
+                            <textarea {...input} placeholder={'Make your post...'}
+                                      className={meta.touched && meta.error ? s.error : null}/>
                             {meta.touched && meta.error && <span>{meta.error}</span>}
                         </div>
                     )}

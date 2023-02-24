@@ -25,7 +25,7 @@ const ProfileStatus = (props) => {
             { editMode &&
             <div>
                 <input className={s.profileStatusInput} type='text' autoFocus={true} onBlur={deactivateEditMode}
-                       onChange={onStatusChange} value={status}/>
+                       onChange={props.isOwner && onStatusChange} value={status}/>
             </div>
             }
         </>
