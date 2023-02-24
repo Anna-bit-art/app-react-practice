@@ -4,8 +4,13 @@
     background-color: rgba(41, 41, 41,.7);
     padding: 1em;
 }
-.nav div{
+.nav li{
     padding: .2em;
+    list-style: none;
+    text-transform: capitalize;
 }
 
 
+.nav .active {
+    color: #78be21;
+}

@@ -1,14 +1,27 @@
 import s from './Nav.module.css'
 import {NavLink} from "react-router-dom";
-import React from "react";
+import React, {useState} from "react";
+import {connect} from "react-redux";
 
-const Navbar = () => {
+const Navbar = (props) => {
+
+    let [activeLink, setActiveLink] = useState(props.categories.find(e => e !== undefined).name);
+
     return <nav className={s.nav}>
-        <div><NavLink to='/profile'>Profile</NavLink></div>
-        <div><NavLink to='/messages'>Messages</NavLink></div>
-        <div><NavLink to='/news'>News</NavLink></div>
-        <div><NavLink to='/users'>Users</NavLink></div>
+
+        {props.categories.map(el =>
+            <li key={el.id}>
+                <NavLink to={el.name} className={activeLink === el.name ? s.active : null}
+                         onClick={() => {setActiveLink(el.name)}}>
+                    {el.name}</NavLink>
+            </li>
+        )}
     </nav>
+
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    categories: state.app.categories
+})
+
+export default connect(mapStateToProps, null)(Navbar);

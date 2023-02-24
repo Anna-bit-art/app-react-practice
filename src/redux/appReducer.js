@@ -3,7 +3,12 @@ import {authMe} from "./authReducer";
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
 let initialState = {
-    initialized: false
+    initialized: false,
+    categories: [
+        {name: 'profile', id: 'profile'},
+        {name: 'messages', id: 'messages'},
+        {name: 'news', id: 'news'},
+        {name: 'users', id: 'users'}]
 }
 
 const appReducer = (state = initialState, action) => {

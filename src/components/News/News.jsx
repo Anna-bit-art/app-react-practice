@@ -26,7 +26,7 @@ const News = (props) => {
                         </figure>
                     )
                     : props.images.map(i =>
-                        <figure key={i.id} className={i.big && s.bigger}>
+                        <figure key={i.id} className={i.big ? s.bigger : null}>
                             <img alt={'news'} src={i.photoUrl}/>
                         </figure>
                     )
@@ -34,7 +34,7 @@ const News = (props) => {
             </div>
 
             <div className={s.like}>
-                <img alt={'like'} src={like} onClick={like}/>
+                <img alt={'like'} src={like}/>
                 <span className={s.likesCount}>{props.likesCount}</span>
             </div>
 
