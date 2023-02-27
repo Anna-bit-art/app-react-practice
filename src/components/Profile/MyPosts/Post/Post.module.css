@@ -1,18 +1,19 @@
-.posts {
+.post {
     display: flex;
     width: 80%;
-    margin-bottom: 15px;
+    gap: 10px;
+    flex-direction: row;
 }
 
-.item {
+.post p {
     font-size: 1em;
     color: #000;
     font-weight: normal;
-    flex: 5;
-    margin-left: .5em;
+    padding: 5px;
+    margin: 0;
 }
 
-.imgPost {
+.post img {
     vertical-align: middle;
     border-radius: 50%;
     width: 25px;

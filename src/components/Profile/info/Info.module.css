@@ -2,6 +2,7 @@
     display: flex;
     margin-top: 0;
     column-gap: 1em;
+    position: relative;
 }
 
 
@@ -17,78 +18,69 @@
     margin-bottom: 10px;
 }
 
-.photo {
+.info .photo {
     flex: 1;
 }
 
-.photo label{
+.info .photo label{
     font-size: .9em;
     color: #78be21;
     border-radius: 2px;
     cursor: pointer;
-    font-weight: bold;
+    text-decoration: underline;
 }
 
-.photoInfo {
+.info .photoInfo {
     flex: 3;
 }
 
-h3 {
+.info h3 {
     font-size: 1.6em;
     margin-top: 5px;
     color: rgba(41, 41, 41,.9);
     margin-bottom: 0;
 }
 /************************************userInfo**************************************************/
-.userInfo{
-    display: inline-block;
-    width: 20%;
-    font-weight: bold;
-}
-
-.contacts{
+.info .user {
     display: flex;
+    flex-direction: column;
 }
 
-ul{
-    list-style: none;
+.info .user button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    text-decoration: underline;
+    text-transform: capitalize;
+    font-size: .9em;
+    font-weight: 500;
+    text-align: right;
     padding: 0;
-    margin: 0;
+    margin: 0 5px 0 0;
 }
 
-.userQuestion{
-    flex: 1;
+.info .user button:hover{
+    color: #78be21;
+    background: white;
 }
 
-.userQuestion li, .contactQuestion li{
+.info .user h5 {
+    font-size: .9em;
+    color: rgb(26,111,182);
+    margin-top: 1em;
+}
+
+.info .user div{
     font-size: 1em;
     color: rgba(41, 41, 41,.9);
     margin: 0;
 }
 
-.userAnswer{
-    flex: 3;
-}
+/*.info .user div span{*/
+/*    font-weight: 600;*/
+/*    color: rgba(41, 41, 41, .7);*/
+/*}*/
 
-.userAnswer li, .contactAnswer li{
-    font-size: .9em;
-    color: #696969;
-    margin: 0;
-}
-.me {
-    font-size: .9em;
-    color: rgb(26,111,182);
-    margin-top: 1em;
-}
-/************************************userContact**************************************************/
-.contacts{
-    display: flex;
-}
 
-.contactQuestion{
-    flex: 1;
-}
-.contactAnswer{
-    flex: 3;
-}
 

@@ -15,13 +15,9 @@ function MyPosts(props) {
                 </div>
 
                 <div className={s.posts}>
-                    <div>
                         {props.posts.map(p => (
-                            <Post id={p.id} like={p.likesCount}
-                                  key={p.id} text={p.text}
-                                  profile={props.profile} />
+                            <Post id={p.id} like={p.likesCount} key={p.id} text={p.text} profile={props.profile} />
                         ))}
-                    </div>
                 </div>
             </div>
             }

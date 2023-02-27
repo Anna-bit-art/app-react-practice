@@ -1,75 +1,85 @@
 import s from './Info.module.css';
 import Preloader from "../../common/preloader/preloader";
 import userPhoto from "../../../img/catAvatar2.jpeg";
-import React from "react";
+import React, {useState} from "react";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
+import ProfileDataForm from "../ProfileDataForm";
 
-const Info = (props) => {
+const Info = ({profile, savePhoto, isOwner, status, updateStatus}) => {
+
+    let [editMode, setEditMode] = useState(false)
+
+    const handleSubmit = (formData) => {
+        console.log(formData);
+        setEditMode(false);
+    }
 
     const onMainPhotoSelected = (e) => {
         if (e.target.files.length) {
-            props.savePhoto(e.target.files[0]);
+            savePhoto(e.target.files[0]);
         }
     }
 
-    if (!props.profile) {return <Preloader />}
+    if (!profile) {
+        return <Preloader/>
+    }
 
     return (
         <div className={s.info}>
             <div className={s.photo}>
-                <img alt='img' src={ props.profile.photos.large ? props.profile.photos.large : userPhoto } />
-                { props.isOwner &&
-                    <>
-                        <input type={'file'} onChange={onMainPhotoSelected} id='select' hidden/>
-                        <label htmlFor='select'>Choose file</label>
-                    </>
+                <img alt='img' src={profile.photos.large ? profile.photos.large : userPhoto}/>
+                {isOwner &&
+                <>
+                    <input type={'file'} onChange={onMainPhotoSelected} id='select' hidden/>
+                    <label htmlFor='select'>Choose file</label>
+                </>
                 }
 
             </div>
 
             <div className={s.photoInfo}>
-                <h3>{props.profile.fullName}</h3>
 
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus} isOwner={props.isOwner} />
+                { !editMode
+                    ? <>
+                        <h3>{profile.fullName}</h3>
+                        <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner}/>
+                        <ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=>setEditMode(true)}/>
+                    </>
 
-                <h5 className={s.me}>About me</h5>
-                <div className={s.user}>
-                    <div className={s.userQuestion}>
-                        <ul>
-                            <li>Looking for a job:</li>
-                            <li>Skills:</li>
-                            <li>About me:</li>
-                        </ul>
-                    </div>
 
-                    <div className={s.userAnswer}>
-                        <ul>
-                            <li>{(props.profile.lookingForAJob) ? 'yes' : ''}</li>
-                            <li>{props.profile.lookingForAJobDescription}</li>
-                            <li>{props.profile.aboutMe}</li>
-                        </ul>
-                    </div>
-                </div>
+                    : <ProfileDataForm profile={profile} handleSubmit={handleSubmit}/>
+                }
 
-                <h5 className={s.me}>My contacts</h5>
-                <div className={s.contacts}>
-                    <div className={s.contactQuestion}>
-                        <ul>
-                            <li>github:</li>
-                            <li>facebook:</li>
-                        </ul>
-                    </div>
-
-                    <div className={s.contactAnswer}>
-                        <ul>
-                            <li><a href='#'>{props.profile.contacts.github}</a></li>
-                            <li><a href='#'>{props.profile.contacts.facebook}</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
+
         </div>
     )
 }
 
 export default Info;
+
+
+const ProfileData = ({profile, isOwner, goToEditMode}) => {
+    return <div className={s.user}>
+        { isOwner &&  <button onClick={goToEditMode}>Edit</button> }
+
+        <h5>About me</h5>
+
+        <div><span>Looking for a job:</span> {(profile.lookingForAJob) ? 'yes' : ''}</div>
+        <div><span>My skills:</span> {profile.lookingForAJobDescription}</div>
+        <div><span>About me:</span> {profile.aboutMe}</div>
+
+        <h5>My contacts</h5>
+        <div className={s.contacts}>
+            {Object.keys(profile.contacts).map(key =>
+                <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
+            )}
+        </div>
+    </div>
+
+}
+
+
+const Contact = ({contactTitle, contactValue}) => {
+    return <div><span>{contactTitle}:</span> {contactValue}</div>
+}

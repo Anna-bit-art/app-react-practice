@@ -1,0 +1,61 @@
+.profileForm{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.profileForm button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    text-decoration: underline;
+    text-transform: capitalize;
+    font-size: .9em;
+    font-weight: 500;
+    text-align: right;
+    padding: 0;
+    margin: 0 5px 0 0;
+}
+
+.profileForm button:hover{
+    color: #78be21;
+    background: white;
+}
+
+.profileForm div{
+    display: flex;
+    flex-direction: row;
+}
+
+.profileForm div label{
+    display: flex;
+    width: 150px;
+}
+.profileForm div textarea, input {
+    width: 400px;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.profileForm input {
+    height: 25px;
+    background-color: rgba(41, 41, 41,.04);
+    border: 1px solid rgba(41, 41, 41,.04);
+}
+
+.profileForm input[type=checkbox]{
+    height: 13px;
+    width: 13px;
+}
+
+.profileForm div.name span{
+    font-size: 14px;
+    padding: 5px;
+    color: rgb(179, 22, 111);
+}
