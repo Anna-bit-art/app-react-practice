@@ -5,13 +5,13 @@ import React, {useState} from "react";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import ProfileDataForm from "../ProfileDataForm";
 
-const Info = ({profile, savePhoto, isOwner, status, updateStatus}) => {
+const Info = ({profile, savePhoto, isOwner, status, updateStatus, saveProfile, profileErrors}) => {
 
     let [editMode, setEditMode] = useState(false)
 
-    const handleSubmit = (formData) => {
-        console.log(formData);
-        setEditMode(false);
+    const handleSubmit = async (formData) => {
+        await saveProfile(formData)
+            setEditMode(false);
     }
 
     const onMainPhotoSelected = (e) => {
@@ -26,6 +26,7 @@ const Info = ({profile, savePhoto, isOwner, status, updateStatus}) => {
 
     return (
         <div className={s.info}>
+
             <div className={s.photo}>
                 <img alt='img' src={profile.photos.large ? profile.photos.large : userPhoto}/>
                 {isOwner &&
@@ -39,15 +40,15 @@ const Info = ({profile, savePhoto, isOwner, status, updateStatus}) => {
 
             <div className={s.photoInfo}>
 
-                { !editMode
+                {!editMode
                     ? <>
                         <h3>{profile.fullName}</h3>
                         <ProfileStatus status={status} updateStatus={updateStatus} isOwner={isOwner}/>
-                        <ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=>setEditMode(true)}/>
+                        <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => setEditMode(true)}/>
                     </>
 
 
-                    : <ProfileDataForm profile={profile} handleSubmit={handleSubmit}/>
+                    : <ProfileDataForm profile={profile} handleSubmit={handleSubmit} profileErrors={profileErrors}/>
                 }
 
             </div>
@@ -61,7 +62,7 @@ export default Info;
 
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
     return <div className={s.user}>
-        { isOwner &&  <button onClick={goToEditMode}>Edit</button> }
+        {isOwner && <button onClick={goToEditMode}>Edit</button>}
 
         <h5>About me</h5>
 

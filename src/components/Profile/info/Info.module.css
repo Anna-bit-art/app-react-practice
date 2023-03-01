@@ -77,10 +77,10 @@
     margin: 0;
 }
 
-/*.info .user div span{*/
-/*    font-weight: 600;*/
-/*    color: rgba(41, 41, 41, .7);*/
-/*}*/
+.info .user div span{
+    font-weight: 500;
+    color: #000;
+}
 
 
 

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 7px;
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .profileForm button{
@@ -26,17 +26,20 @@
 
 .profileForm div{
     display: flex;
-    flex-direction: row;
+    flex: 1;
+    flex-flow: row nowrap;
+    justify-content: left;
 }
 
-.profileForm div label{
+.profileForm label{
     display: flex;
     width: 150px;
 }
-.profileForm div textarea, input {
-    width: 400px;
+.profileForm textarea, input {
+    flex: 1;
+    max-width: 400px;
     height: 100px;
-    box-sizing: border-box;
+    box-sizing: inherit;
     border-radius: 4px;
     font-size: 14px;
     resize: none;
@@ -52,10 +55,19 @@
 .profileForm input[type=checkbox]{
     height: 13px;
     width: 13px;
+    flex: none;
 }
 
-.profileForm div.name span{
+.profileForm div span{
     font-size: 14px;
     padding: 5px;
     color: rgb(179, 22, 111);
+}
+.profileForm .error {
+    display: flex;
+    line-height: 32px;
+    font-size: 1em;
+    color: rgb(179, 22, 111);
+    flex-flow: row nowrap;
+    justify-content: center;
 }

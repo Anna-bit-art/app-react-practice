@@ -8,9 +8,14 @@
 }
 
 .profileStatusInput {
-    font-size: 1em;
+    display: flex;
+    max-width: 400px;
+    height: 20px;
+    border-radius: 4px;
+    font-size: 14px;
     color: #000;
     font-weight: normal;
     margin-top: .3em;
-    border: 1px solid #ffffff;
+    background-color: rgba(41, 41, 41,.04);
+    border: 1px solid rgba(41, 41, 41,.04);
 }

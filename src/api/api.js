@@ -64,7 +64,11 @@ export const profileAPI = {
                 'Content-Type': 'multipart/form-data'
             }
         })
+    },
+    saveProfile(profile) {
+        return users.put(`profile`, profile)
     }
+
 }
 
 

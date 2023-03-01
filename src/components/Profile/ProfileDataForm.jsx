@@ -3,21 +3,22 @@ import {Field, Form} from "react-final-form";
 import s from "./ProfileDataForm.module.css";
 
 
-const required = value => (value ? undefined : 'Required')
+const required = value => (value ? undefined : 'Required');
 
 
-const ProfileDataForm = ({profile, handleSubmit}) => {
+
+const ProfileDataForm = ({profile, handleSubmit, profileErrors}) => {
     const onSubmit = (formData) => {
-        handleSubmit(formData);
+       handleSubmit(formData);
     }
-    return <>
 
+    return <>
         <Form
             onSubmit={onSubmit}
             initialValues={{
-                lookingForAJob: false, fullName: profile.fullName,
+                lookingForAJob: profile.lookingForAJob, fullName: profile.fullName,
                 lookingForAJobDescription: profile.lookingForAJobDescription,
-                aboutMe: profile.aboutMe
+                aboutMe: profile.aboutMe,
             }}
             render={({handleSubmit}) => (
                 <>
@@ -41,25 +42,41 @@ const ProfileDataForm = ({profile, handleSubmit}) => {
 
                         <div>
                             <label>Looking for a job:</label>
-                            <Field name="lookingForAJob" component="input" type="checkbox"/>
+                            <Field name="lookingForAJob" component="input" type="checkbox" />
                         </div>
 
-                        <div>
-                            <label>My skills:</label>
-                            <Field name="lookingForAJobDescription" component="textarea"/>
-                        </div>
-
-                        <div>
-                            <label>About me:</label>
-                            <Field name="aboutMe" component="textarea"/>
-                        </div>
-
-                            {Object.keys(profile.contacts).map(key =>
+                        <Field name='lookingForAJobDescription' validate={required}>
+                            {({input, meta}) => (
                                 <div>
-                                    <label>{key}</label>
-                                    <Field name={key} component="input" initialValue={profile.contacts[key]}/>
+                                    <label>My skills:</label>
+                                    <textarea {...input} />
+                                    {(meta.error || meta.submitError) && meta.touched &&
+                                    (<span>{meta.error || meta.submitError}</span>)}
                                 </div>
                             )}
+                        </Field>
+
+                        <Field name='aboutMe' validate={required}>
+                            {({input, meta}) => (
+                                <div>
+                                    <label>About me:</label>
+                                    <textarea {...input} />
+                                    {(meta.error || meta.submitError) && meta.touched &&
+                                    (<span>{meta.error || meta.submitError}</span>)}
+                                </div>
+                            )}
+                        </Field>
+
+                        {Object.keys(profile.contacts).map(key =>
+                            <div key={key}>
+                                <label>{key}</label>
+                                <Field name={`contacts.${key}`} component="input" initialValue={profile.contacts[key]}/>
+                            </div>
+                        )}
+
+                        {profileErrors &&
+                            <div className={s.error}>{errorArray(profileErrors)}</div>
+                        }
 
                     </form>
                 </>
@@ -71,3 +88,15 @@ const ProfileDataForm = ({profile, handleSubmit}) => {
 
 export default ProfileDataForm;
 
+
+
+let errorArray = (errors) => {
+    let modified = [];
+    errors.map(item => {
+            item = item.split('>')[1].split(')')[0].toLowerCase();
+            modified.push(item);
+        }
+    )
+    if (modified.length === 0) return null;
+    if (modified.length !== 0) return `Invalid URL format: ${modified.toString()}`;
+}
