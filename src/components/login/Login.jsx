@@ -4,15 +4,19 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {login} from "../../redux/authReducer";
 import {Navigate} from "react-router-dom";
+import React from "react";
 
 const required = value => (value ? undefined : 'Required')
 
-const LoginForm = (props) => {
-    const onSubmit = (e) => {
-        props.login(e.email, e.password, e.rememberMe)
+const LoginForm = ({ isAuth, errorMessage, captchaUrl, login }) => {
+
+    const onSubmit = (formdata) => {
+        console.log(formdata);
+        login(formdata.email, formdata.password,
+            formdata.rememberMe, formdata.captcha);
     }
 
-    if (props.isAuth) return <Navigate to={"/profile"}/>
+    if (isAuth) return <Navigate to={"/profile"}/>
 
     return <>
         <h3 className={s.login}>Login</h3>
@@ -44,7 +48,7 @@ const LoginForm = (props) => {
                             )}
                         </Field>
 
-                        <Field name='checkbox' type='checkbox'>
+                        <Field name='rememberMe' type='checkbox' initialValue={false}>
                             {({input}) => (
                                 <div className={s.checkbox}>
                                     <input {...input} type='checkbox'/>
@@ -53,7 +57,15 @@ const LoginForm = (props) => {
                             )}
                         </Field>
 
-                        {props.errorMessage && <div className={s.error}>{props.errorMessage}</div>}
+                        {captchaUrl &&
+                            <div className={s.captcha}>
+                                <img src={captchaUrl} alt={'captcha'}/>
+                                <Field name='captcha' component="input" validate={required}/>
+                            </div>
+
+                        }
+
+                        {errorMessage && <div className={s.error}>{errorMessage}</div>}
 
                         <button type='submit'>Login</button>
                     </form>
@@ -71,7 +83,8 @@ const LoginForm = (props) => {
 const mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
-        errorMessage: state.auth.errorMessage
+        errorMessage: state.auth.errorMessage,
+        captchaUrl: state.auth.captchaUrl
     }
 
 }

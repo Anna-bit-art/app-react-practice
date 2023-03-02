@@ -82,3 +82,27 @@
 .enter span {
     font-weight: bold;
 }
+
+.loginForm .captcha {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    margin: 0 auto;
+    width: 150px;
+    height: 100px;
+}
+
+.loginForm .captcha img {
+    margin: 0 auto;
+    width: 130px;
+    height: 50px;
+}
+
+.loginForm .captcha input {
+    height: 20px;
+    width: 100px;
+    padding: 1px;
+    margin: 0 auto;
+    flex: none;
+    font-size: .9em;
+}
